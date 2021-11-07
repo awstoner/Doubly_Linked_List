@@ -1,0 +1,23 @@
+Author: Alexander Stoner
+Course: COP4530
+Assignment: Project 2
+
+1. reverse()
+reverse() begins by constructing a List object named temp. This is O(1) time. It is just assigning values to member data.
+Then a for loop is next, which calls begin() and end() in the definition of the loop itself which are both O(1) time, as well as
+the iterator increment operator overload++, which is also O(1) time.
+Inside the loop's body, the copy version of function push_front() is called, and passes in a dereferenced iterator.
+The dereference operator overload I believe is also O(1) time, as it is just retrieving the data the current pointer is
+pointing to, no searching required. push_front() calls upon insert(), which I believe is O(1) time as well. It is just creating new pointers and assigning
+existing values to those pointers.
+Finally, the move assignment operator is used to move the resources from temp to the calling object List.
+I believe this is O(1) time, because each move is will transport all necessary member data
+in one fell swoop. Therefore, the time complexity is O(1) + O(1) + O(1) + O(1) + O(n) * O(n) = O(n). I am probably missing some O(1)'s in there but the final answer is
+a time complexity of O(n).
+
+2. remove_if()
+remove_if() begins by constructing an iterator and initaliazing it with begin() and the copy assignment operator. This is O(1) time. It then
+begins a while loop, checking equality between the iterator and end(), then a nested if statement calling upon the parameter pred, and *itr. And within that
+there is erase(itr). Outside of the if statement, the iterator is incremented. I believe that the while() statement provides an O(n) time, * the time complexity
+of pred * the time complexity of erase(). Therefore, I believe the time complexity of this function depends on the predicate that is passed through which passes the
+dereferenced itr. I believe the function's time complexity equals O(1) + O(n) * O(1) * O(1) + O(1) = O(n).
